@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import { Todo } from './components/Todo';
+import { RegisterForm } from './components/registerForm/registerForm';
 
 function App() {
   return (
     <div className="App">
-      <Todo/>
+      {/* <Todo/> */}
+
+      <RegisterForm/>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

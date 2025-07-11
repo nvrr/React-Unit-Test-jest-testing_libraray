@@ -1,0 +1,23 @@
+
+.row {
+    display: flex;
+    width: 600px;
+    margin: 0 auto;
+    /* flex-direction: row; */
+}
+
+.col {
+    padding: 4px;
+    width: 50%;
+}
+
+
+.col:nth-child(1) {
+    text-align: right;
+}
+
+
+.col:nth-child(2) {
+    text-align: left;
+    padding: 4px;
+}
