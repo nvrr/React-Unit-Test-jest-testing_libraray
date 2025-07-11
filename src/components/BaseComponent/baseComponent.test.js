@@ -6,41 +6,50 @@ import userEvent from "@testing-library/user-event";
 
 
 describe('<BaseComponent/>: ', () => {
+    beforeEach(() => {
+        render(<BaseComponent/>)
+      })
   test('should bring button element:', () => {
-    render(<BaseComponent />);
+   
 
     const el = screen.getByRole("button", {name:'Activations' })
     expect(el).toBeInTheDocument()
 })
 
 test('should not bring paragraph element', () => {
-    render(<BaseComponent />);
+   
   const el = screen.queryByTestId('baseParagraph')
 
   expect(el).not.toBeInTheDocument();
 })
 
-test("should bring button element enabled", () => {
-    render(<BaseComponent />);
-
-    const element = screen.getByRole("button", { name: "Activations" });
-
-    expect(element).not.toBeDisabled();
-  });
-
-  test("should bring button element disabled with disabled props", () => {
-    render(<BaseComponent disabled />);
-
-    const element = screen.getByRole("button", { name: "Activations" });
-
-    expect(element).toBeDisabled();
-  });
-
-
-
-
 
 })
+
+
+describe('<BaseComponent/>: ', () => {
+  
+  test("should bring button element enabled", () => {
+      render(<BaseComponent />);
+  
+      const element = screen.getByRole("button", { name: "Activations" });
+  
+      expect(element).not.toBeDisabled();
+    });
+  
+    test("should bring button element disabled with disabled props", () => {
+      render(<BaseComponent disabled />);
+  
+      const element = screen.getByRole("button", { name: "Activations" });
+  
+      expect(element).toBeDisabled();
+    });
+  
+  
+  
+  
+  
+  })
 
 describe('<BaseComponent: user interactions: ', () => {
   beforeEach(() => {
@@ -70,6 +79,40 @@ describe('<BaseComponent: user interactions: ', () => {
   })
   
   
+});
+
+const setValue = jest.fn()
+describe('BaseComponent: Mock Functions', () => {
+  beforeEach(() => {
+    render(<BaseComponent setValue={setValue} />)
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  })
+
+ test('should call setValue after type on input: ', () => {
+   const element = screen.getByLabelText('Value:', {selector: 'input'});
+
+   userEvent.type(element, '10');
+
+   expect(setValue).toHaveBeenCalledTimes(2);
+//    expect(setValue.mock.calls).toHaveLength(2);
+   expect(setValue.mock.calls[0][0]).toBe('1')
+   expect(setValue.mock.calls[1][0]).toBe('10')
+ })
+ 
+ test('should call setValue after paste on input: ', () => {
+    const element = screen.getByLabelText('Value:', {selector: 'input'});
+
+    userEvent.paste(element, '10')
+
+    expect(setValue).toHaveBeenCalledTimes(1);
+    expect(setValue.mock.calls[0][0]).toBe('10')
+  })
+  
+
+
 })
 
 
