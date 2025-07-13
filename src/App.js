@@ -2,13 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import { Todo } from './components/Todo';
 import { RegisterForm } from './components/registerForm/registerForm';
+import { Posts } from './components/posts/Posts';
 
 function App() {
   return (
     <div className="App">
       {/* <Todo/> */}
-
-      <RegisterForm/>
+<Posts/>
+      {/* <RegisterForm/> */}
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
